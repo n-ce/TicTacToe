@@ -1,6 +1,5 @@
 import calculateWinner from './calculateWinner.js';
 
-
 function Square({ value, onSquareClick }) {
   return (
     <button className="square" onClick={onSquareClick}>
@@ -28,6 +27,9 @@ export default function Board({ xIsNext, squares, onPlay }) {
     'Winner: ' + winner :
     'Next player: ' + (xIsNext ? 'X' : 'O');
 
+	
+
+	
   return (
     <>
       <div className="status">{status}</div>

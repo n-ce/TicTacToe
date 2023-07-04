@@ -1,0 +1,33 @@
+ body {
+	height:100%;
+	padding: 1rem;
+}
+.status{
+	margin:0;
+	padding:0;
+	margin-bottom:0.5rem;
+}
+.square{
+	height:2.3rem;
+	width:2.3rem;
+	font-weight:bolder;
+	font-size:1.6rem;
+	background:none;
+	line-height:1.6rem;
+	margin-left: -0.6px;
+	margin-right: -0.3px;
+	border:1px solid #aaa;
+}
+.board-row{
+	display:flex;
+	height:2.3rem;
+	margin-top:-0.5px;
+	margin-bottom:-0.25px;
+}
+
+.game{
+	display:flex;
+}
+.game-board{
+	margin-right:1.5rem
+}
