@@ -1,12 +1,6 @@
 import { useState } from 'react';
 import Board from './Board';
 
-const changeInHistory = (previousSquares, currentSquares) => {
-  for (let i = 0; i < 9; i++) {
-    if (previousSquares[i] !== currentSquares[i])
-      return i;
-  }
-}
 const locations = [
   [1, 1], [1, 2], [1, 3], [2, 1], [2, 2], [2, 3], [3, 1], [3, 2], [3, 3]
 ];
@@ -26,10 +20,9 @@ export default function Game() {
   }
 
   const moves = history.map((squares, move, arr) => {
-    const moveIndex = move ? changeInHistory(arr[move - 1], arr[move]) : null;
-
-
-    const [row, col] = move ? locations[moveIndex] : [7, 7];
+    const moveIndex = move ? arr[move-1].findIndex((square, i) => square !== arr[move][i]) : null;
+    const [row, col] = move ? locations[moveIndex] : [null, null];
+    
     const description =
       move > 0 ?
         `Go to move #${move} at (${row},${col})` :
