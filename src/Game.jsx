@@ -1,29 +1,45 @@
 import { useState } from 'react';
 import Board from './Board';
 
+const changeInHistory = (previousSquares, currentSquares) => {
+  for (let i = 0; i < 9; i++) {
+    if (previousSquares[i] !== currentSquares[i])
+      return i;
+  }
+}
+const locations = [
+  [1, 1], [1, 2], [1, 3], [2, 1], [2, 2], [2, 3], [3, 1], [3, 2], [3, 3]
+];
+
 export default function Game() {
   const [history, setHistory] = useState([Array(9).fill(null)]);
   const [currentMove, setCurrentMove] = useState(0);
   const xIsNext = currentMove % 2 === 0;
   const currentSquares = history[currentMove];
+
   function handlePlay(nextSquares) {
+
     const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
     setHistory(nextHistory);
     setCurrentMove(nextHistory.length - 1);
+
   }
 
-  const moves = history.map((squares, move) => {
+  const moves = history.map((squares, move, arr) => {
+    const moveIndex = move ? changeInHistory(arr[move - 1], arr[move]) : null;
 
+
+    const [row, col] = move ? locations[moveIndex] : [7, 7];
     const description =
       move > 0 ?
-        'Go to move #' + move :
+        `Go to move #${move} at (${row},${col})` :
         'Go to game start!';
 
     return (
       <li key={move}>
         {
           move == currentMove ?
-            <>You are at move #{move}</> :
+            <>You are at move #{move} at ({row},{col})</> :
             <button onClick={() => setCurrentMove(move)}>{description}</button>
         }
       </li>

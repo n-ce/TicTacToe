@@ -31,7 +31,7 @@ export default function Board({ xIsNext, squares, onPlay }) {
   const winningSquares = winInfo?.[winner];
 
 
-  const status = !squares.includes(null) && !winInfo ? "DRAW" : winner ?
+  const status = (!squares.includes(null) && !winInfo) ? "DRAW" : winner ?
     'Winner: ' + winner :
     'Next player: ' + (xIsNext ? 'X' : 'O');
 
